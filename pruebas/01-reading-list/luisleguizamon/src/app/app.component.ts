@@ -19,7 +19,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    const url = '../assets/books.json';
+    const url = 'assets/books.json';
     this.http.get<Books>(url).subscribe(data => {
       this.books = data.library;
     })
