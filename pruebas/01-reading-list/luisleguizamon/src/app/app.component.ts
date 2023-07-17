@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Book } from './models/book.model';
 
 interface Books {
-  library: any[];
+  library: {
+    book: Book
+  }[];
 }
 
 @Component({
@@ -12,7 +15,7 @@ interface Books {
 })
 export class AppComponent {
 
-  books: any[] = [];
+  books: { book: Book }[] = [];
 
   constructor(private http: HttpClient) {
 
