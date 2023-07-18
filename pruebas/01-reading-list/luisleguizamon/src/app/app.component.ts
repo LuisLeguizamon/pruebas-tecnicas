@@ -9,7 +9,7 @@ import { BookService } from './services/book.service';
 })
 export class AppComponent {
 
-  books: { book: Book }[] = [];
+  books: Book[] = [];
 
   constructor(private bookService: BookService) {
 
@@ -17,7 +17,10 @@ export class AppComponent {
 
   ngOnInit() {
     this.bookService.getBooks().subscribe(data => {
-      this.books = data.library;
+      let library = data.library;
+      this.books = library.map((item) => {
+        return item.book;
+      });
     });
   }
 }
