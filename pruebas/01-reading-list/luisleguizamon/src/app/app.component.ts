@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Book } from './models/book.model';
-import { Library } from './models/library.model';
+import { BookService } from './services/book.service';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +11,13 @@ export class AppComponent {
 
   books: { book: Book }[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private bookService: BookService) {
 
   }
 
   ngOnInit() {
-    const url = 'assets/books.json';
-    this.http.get<Library>(url).subscribe(data => {
+    this.bookService.getBooks().subscribe(data => {
       this.books = data.library;
-    })
+    });
   }
 }
